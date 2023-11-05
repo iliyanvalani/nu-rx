@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drug Interaction Checker</title>
+<style>
+  body { font-family: Arial, sans-serif; }
+  .interaction-result { margin-top: 20px; }
+</style>
+<script>
+  async function getRxcui(drugName) {
+    const response = await fetch(`https://rxnav.nlm.nih.gov/REST/rxcui.json?name=${drugName}`);
+    const data = await response.json();
+    return data.idGroup.rxnormId[0]; // Get the first RxCUI in the array
+  }
+
+  async function checkInteractions() {
+    const drug1Name = document.getElementById('drug1').value.trim();
+    const drug2Name = document.getElementById('drug2').value.trim();
+
+    if (!drug1Name || !drug2Name) {
+      alert('Please enter two drug names.');
+      return;
+    }
+
+    // Get RxCUIs for both drugs
+    const drug1Rxcui = await getRxcui(drug1Name);
+    const drug2Rxcui = await getRxcui(drug2Name);
+
+    // Now use the RxCUIs to check for interactions
+    const interactionResponse = await fetch(`https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=${drug1Rxcui}+${drug2Rxcui}`);
+    const interactionData = await interactionResponse.json();
+
+    displayInteractions(interactionData);
+  }
+
+  function displayInteractions(data) {
+    const resultDiv = document.getElementById('interactionResults');
+    resultDiv.innerHTML = ''; // Clear previous results
+
+    if (data.fullInteractionTypeGroup) {
+      data.fullInteractionTypeGroup.forEach((group) => {
+        group.fullInteractionType.forEach((interaction) => {
+          interaction.interactionPair.forEach((pair) => {
+            const interactionInfo = document.createElement('div');
+            interactionInfo.classList.add('interaction-result');
+            interactionInfo.innerHTML = `
+              <strong>Interaction:</strong> ${pair.description} <br>
+              <strong>Severity:</strong> ${pair.severity || 'Not specified'}
+            `;
+            resultDiv.appendChild(interactionInfo);
+          });
+        });
+      });
+    } else {
+      resultDiv.innerHTML = '<p>No interactions found or drug not recognized.</p>';
+    }
+  }
+</script>
+</head>
+<body>
+
+<h1>Drug Interaction Checker</h1>
+
+<div>
+  <label for="drug1">Drug 1:</label>
+  <input type="text" id="drug1" name="drug1">
+</div>
+
+<div>
+  <label for="drug2">Drug 2:</label>
+  <input type="text" id="drug2" name="drug2">
+</div>
+
+<button onclick="checkInteractions()">Check Interactions</button>
+
+<div id="interactionResults"></div>
+
+</body>
+</html>

@@ -1,0 +1,213 @@
+/* Resets some basic elements for cross-browser compatibility */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont;
+}
+
+body {
+/*  font-family: 'Arial', Tahoma, Geneva, Verdana, sans-serif;
+*/  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+  color: #333;
+  line-height: 1.6;
+}
+
+nav {
+  font-family: -apple-system, system-ui, BlinkMacSystemFont;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  background-color: rgb(255, 255, 255, 0.3);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: fixed;
+  width: 100%;
+  color: #616161;
+}
+
+nav a {
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+nav a:hover,
+nav a:focus {
+  /*background-color: #505050;*/
+  color: #000;
+}
+
+h1 {
+  font-size: 60px;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont;
+  text-align: center;
+  padding: 20px 0;
+  padding-bottom: 0;
+  margin: 0;
+  color: #333;
+  /*background-color: #eaeaea;*/
+  /*border-bottom: 1px solid #dcdcdc;*/
+/*  line-height: 400px;
+*/  justify-content: center;
+}
+
+#drugInputs,
+#searchForm {
+  max-width: 800px;
+  margin: 20px auto;
+  margin-bottom: 0px;
+  padding: 20px;
+  /*padding-b*/ottom: 5px;
+  /*background: #fff;*/
+  /*box-shadow: 0 2px 5px rgba(0,0,0,0.1);*/
+  border-radius: 5px;
+}
+
+.drug-input {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  margin-bottom: 5px;
+}
+
+.drug:hover {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: 0.1s;
+}
+
+input[type='text'] {
+  width: calc(100% - 90px);
+  padding: 10px;
+  padding-left: 20px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+button {
+  background-color: #4092b8;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 20px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.check {
+  background-color: #7bb886;
+}
+
+button:hover {
+  background-color: #0295d9;
+}
+
+.check:hover {
+  background-color: #4cae4c;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+}
+
+.interaction-result,
+#result {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.interactionResults,{
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+table {
+  margin-top: 20px;
+  border-collapse: separate; /* This is required for border-radius to work on tables */
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 5px;
+
+  width: 800px;
+  justify-content: center;
+  margin: auto;
+  margin-top: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+  padding-left: 20px;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+th {
+  background-color: rgb(203, 232, 229);
+  padding-left: 20px;
+  color: #333;
+}
+
+#summaryDiv {
+  background-color: #fff;
+  padding: 10px;
+  padding-top: 5px;
+  margin-top: 20px;
+  padding-left: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin: 20px auto;
+  width: 800px;
+}
+
+h2 {
+  color: #5aada5;
+}
+
+.loading { margin-top: 20px; display: none; }
+
+.remove {
+  background-color: #c45656;
+}
+
+.remove:hover {
+  background-color: #c42f2f;
+}
+
+#header {
+  height: 400px;
+  background-image: url(https://img.freepik.com/free-vector/vibrant-summer-ombre-background-vector_53876-105765.jpg);
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-position: center;
+}
+
+nav a {
+  color: #616161;
+}
+
+#subtitle {
+  font-size: 20px;
+  text-align: center;
+}
+
+#buttons {
+  text-align: center;
+  padding-top: 15px;
+}
